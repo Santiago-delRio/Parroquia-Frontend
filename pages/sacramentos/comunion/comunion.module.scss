@@ -1,0 +1,47 @@
+@use "../../../styles/variables/colores" as *;
+@use "../../../styles/variables/mixins" as *;
+
+.comunion{
+    //Header
+    header{
+        @include headerImagen;
+        & > span img{
+            max-width: none!important;
+            max-height: none!important;
+            width: 100%!important;
+            height: 100%!important;
+        }
+    }
+
+    //Info
+    .info{
+        padding: 0 20px;
+        margin: 60px auto;
+        max-width: $maxWidth;
+
+        //Titulos 
+        h3{
+            @include h3;
+            margin-bottom: 15px;
+            margin-top: 40px;
+            &:first-of-type{
+                margin-top: 0;
+            }
+        }
+        //Contenido
+        li, p{
+            @include parrafos;
+            a{
+                font-weight: 500;
+                color: $clr_texto;
+            }
+        }
+
+        ul li{
+            margin-left: 40px;
+            &:first-of-type{
+                padding-bottom: 15px;
+            }
+        }
+    }
+}

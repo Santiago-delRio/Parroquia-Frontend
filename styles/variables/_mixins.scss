@@ -1,0 +1,138 @@
+@use "../../styles/variables/colores" as *;
+
+//==== Botones
+@mixin botonAzul{
+    font-family: 'Barlow Condensed';
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: $clr_dorado;
+    padding: 10px;
+    background-color: transparent;
+    border: 3px solid $clr_dorado;
+    cursor: pointer;
+    transition: .2s;
+    @media only screen and (min-width: $celularChicoLandscape){
+        font-size: 1.2rem;
+    }
+    &:hover{
+        background-color: $clr_dorado;
+        color: $clr_azulOscuro;
+    }
+}
+
+@mixin botonDorado{
+    font-family: 'Barlow Condensed';
+    font-size: 1rem;
+    font-weight: 500;
+    color: $clr_azulOscuro;
+    padding: 10px;
+    background-color: $clr_dorado;
+    border: none;
+    cursor: pointer;
+    @media only screen and (min-width: $celularChicoLandscape){
+        font-size: 1.1rem;
+    }
+}
+
+//==== Textos
+
+//Parrafos
+@mixin parrafos($color:$clr_texto){
+    color: $color;
+    font-weight: 300;
+    font-size: 1.1rem;
+    @media only screen and (min-width: $celularChicoLandscape){
+        font-size: 1.2rem;
+    }
+    @media only screen and (min-width: $escritorio){
+        font-size: 1.4rem;
+    }
+}
+
+//H2
+@mixin h2($color:$clr_azulOscuro, $fuente:"Barlow Condensed"){
+    color: $color;
+    font-family: $fuente;
+    font-weight: 500;
+    font-size: 1.87rem;
+    @media only screen and (min-width: $celularChicoLandscape){
+        font-size: 2rem;
+    }
+    @media only screen and (min-width: $celularGrandeLandscape){
+        font-size: 2.1rem;
+    }
+}
+
+//H3
+@mixin h3($color: $clr_azulClaro ,$weight: 500){
+    color: $color;
+    font-weight: $weight;
+    font-size: 1.5rem;
+    @media only screen and (min-width: $celularChicoLandscape){
+        font-size: 1.6rem;
+    }
+    @media only screen and (min-width: $escritorio){
+        font-size: 1.8rem;
+    }
+}
+
+//==== Header con imagen y titulo
+@mixin headerImagen{
+    position: relative;
+    width: 100%;
+    height: 190px;
+    @media only screen and (min-width: $celularChicoLandscape){
+        height: 250px;
+    }
+    @media only screen and (min-width: $celularGrandeLandscape){
+        height: 300px;
+    }
+    @media only screen and (min-width: $escritorio){
+        height: 350px;
+    }
+    @media only screen and (min-width: $escritorioMediano){
+        height: 430px;
+    }
+    .filtro{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+    //Titulo
+    h1{
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+
+        font-family: "Barlow Condensed";
+        font-weight: 500;
+        font-size: 2.8rem;
+        color: white;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        padding: 0 20px;
+
+        width: 100%;
+        max-width: 1232px;
+        @media only screen and (min-width: $celularGrandeLandscape){
+            font-size: 3.5rem;
+        }
+        @media only screen and (min-width: $escritorio){
+            font-size: 4rem;
+        }
+    }
+}
+
+//QUERIES
+$celularChico: 20em; ///==320px
+$celularMediano: 22.5em; ///==360px
+$celularGrande: 25.66em; ///==411px
+$celularChicoLandscape: 32.5em; ///520px
+$celularNormalLandscape: 37.5em; ///==600px
+$tablet: 43.7em; ///==700px
+$celularGrandeLandscape: 56.25em; ///==900px
+$escritorio: 64em; ///==1024px
+$escritorioMediano: 75em; ///==1200px
+$maxWidth: 77em; // breakpoint maxwidth container de la pagina

@@ -1,0 +1,257 @@
+@use "../styles/variables/colores" as *;
+@use "../styles/variables/mixins" as *;
+
+.inicioContainer{
+    //Hero
+    .hero{
+        position: relative;
+        background: rgb(27,34,73);
+        background: linear-gradient(145deg, rgba(27,34,73,1) 0%, rgba(17,23,53,1) 100%);
+        //Imagen de fondo
+        .imagenFondo{
+            visibility: hidden;
+            @media only screen and (min-width: $celularGrandeLandscape){
+                visibility: visible;
+            }
+        }
+        .infoContainer{
+            position: relative;
+            max-width: $maxWidth;
+            padding: 60px 20px;
+            margin: 0 auto;
+            @media only screen and (min-width: $celularGrandeLandscape){
+                display: flex;
+                flex-direction: row-reverse;
+                padding: 150px 20px;
+                .info{
+                    width: 80%;
+                    padding-right: 60px;
+                }
+            }
+            //Titulo
+            h1{
+                font-family: "Barlow Condensed";
+                font-size: 3.1rem;
+                font-weight: 500;
+                color: white;
+                @media only screen and (min-width: $celularChicoLandscape){
+                    font-size: 3.5rem;
+                }
+                @media only screen and (min-width: $tablet){
+                    font-size: 4rem;
+                }
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    display: none;
+                    font-size: 3.35rem;
+                    margin-bottom: 30px;
+                }
+                @media only screen and (min-width: $escritorioMediano){
+                    font-size: 4.3rem;
+                }
+            }
+            .imagenContainer{
+                position: relative;
+                margin: 40px 0 30px 0;
+                width: 100%;
+                height: 14.6rem;
+                background-color: #cccccc;
+                @media only screen and (min-width: $celularChicoLandscape){
+                    height: 20rem;
+                }
+                @media only screen and (min-width: $celularNormalLandscape){
+                    height: 25rem;
+                }
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    margin: 0;
+                }
+            }
+            .info{
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    transform: translateY(-17px);
+                }
+                @media only screen and (min-width: $escritorioMediano){
+                    transform: translateY(-20px);
+                }
+                //Titulo para vista escritorio
+                & > h1{
+                    display: none;
+                    @media only screen and (min-width: $celularGrandeLandscape){
+                        display: block;
+                    }
+                }
+                //texto
+                p{
+                    margin-bottom: 40px;
+                    @include parrafos(#D9E5FF);
+                }
+                //Boton ultimas novedades
+                button{
+                    @include botonAzul;
+                }
+            }
+        }
+        
+    }
+
+    //Primer frase de la biblia
+    .fraseBiblia{
+        max-width: $maxWidth;
+        padding: 0 20px;
+        margin: 80px auto;
+        
+        h3{
+            border-top: 2px solid $clr_dorado;
+            color: $clr_azulOscuro;
+            font-family: 'Barlow Condensed';
+            font-size: 1.55rem;
+            font-weight: 500;
+            text-align: center;
+            padding-bottom: 20px;
+            padding-top: 30px;
+        } 
+        p{   
+            font-size: 1rem;
+            color: $clr_texto;
+            text-align: center;
+            border-bottom: 2px solid $clr_dorado;
+            padding-bottom: 30px;
+            br{
+                display: none;
+                @media only screen and (min-width: $celularNormalLandscape){
+                    display: block;
+                }
+            }
+        }
+    }
+    //Colecta y celebracion
+    .colecta, .celebracion{
+        margin: 80px 20px 60px 20px;
+        max-width: $maxWidth;
+        @media only screen and (min-width: $maxWidth){
+            margin: 80px auto 60px auto;
+            padding: 0 20px;
+        }
+        //Imagen
+        .imagenContainer{
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 56.25%;
+            background-color: #cccccc;
+        }
+        //info
+        .info{
+            //Titulo
+            h2{
+                @include h2;
+                padding: 15px 0 10px;
+                @media only screen and (min-width: 59.87em){
+                    padding: 0 0 10px;
+                    text-align: center;
+                }
+            }
+            //Texto
+            p{
+                
+                padding-bottom: 15px;
+                @include parrafos;
+                @media only screen and (min-width: 59.87em){
+                    text-align: center;
+                    padding-bottom: 25px;
+                }
+            }
+            a{
+                width: fit-content;
+                text-decoration: none;
+
+                @media only screen and (min-width: 59.87em){
+                    display: flex;
+                    margin: 0 auto;
+                }
+                button{
+                    @include botonDorado;
+                }
+            }
+        }
+    }
+    //Colecta
+    .colecta{
+        @media only screen and (min-width: 59.87em){
+            display: grid;
+            grid-template-columns: 55% 41%;
+            gap: 0 3rem;
+        }
+    }
+    //Celebracion
+    .celebracion{
+        @media only screen and (min-width: 59.87em){
+            display: grid;
+            grid-template-columns: 41% 55%;
+            gap: 0 3rem;
+        }
+        .info{
+            @media only screen and (min-width: $celularGrandeLandscape){
+                order: -1;
+            }
+        }
+    }
+    //Frase de la biblia con imagen de fondo
+    .fraseBibliaImagen{
+        position: relative;
+        width: 100%;
+        height: 18rem;
+        margin: 80px 0 80px;
+        & > span img{
+            object-position: 0 20%;
+            max-width: none!important;
+            max-height: none!important;
+            width: 100%!important;
+            height: 100%!important;
+        }
+        .filtro{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .frase{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: $maxWidth;
+            width: 100%;
+            @media only screen and (min-width: $maxWidth){
+                margin: 0 auto;
+            }
+            padding: 30px 20px;
+            h3{
+                color: white;
+                font-family: 'Barlow Condensed';
+                font-size: 1.35rem;
+                font-weight: 500;
+                text-align: center;
+                padding-bottom: 20px;
+                padding-top: 30px;
+                border-top: 2px solid white;
+                @media only screen and (min-width: $celularChico){
+                    font-size: 1.55rem;
+                }
+            } 
+            p{   
+                font-size: 1rem;
+                color: white;
+                text-align: center;
+                border-bottom: 2px solid white;
+                padding-bottom: 30px;
+                br{
+                    display: none;
+                    @media only screen and (min-width: $celularNormalLandscape){
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

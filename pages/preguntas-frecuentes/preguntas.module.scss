@@ -1,0 +1,45 @@
+@use "../../styles/variables/colores" as *;
+@use "../../styles/variables/mixins" as *;
+
+.preguntasContainer{
+
+    //Header
+    header{
+        @include headerImagen;
+        & > span img{
+            object-position: 0 20%;
+            max-width: none!important;
+            max-height: none!important;
+            width: 100%!important;
+            height: 100%!important;
+        }
+    }
+    //Preguntas
+    .preguntas{
+        padding: 0 20px;
+        margin: 60px auto;
+        max-width: $maxWidth;
+
+        //Pregunta
+        h3{
+            @include h3($clr_azulOscuro);
+
+            border-left: 4px solid $clr_dorado;
+            padding-left: 10px;
+            margin-bottom: 15px;
+            margin-top: 50px;
+            &:first-of-type{
+                margin-top: 0;
+            }
+        }
+        ul li{
+            margin-left: 40px;
+            &:first-of-type{
+                padding-bottom: 15px;
+            }
+        }
+        li, p{
+            @include parrafos;
+        }
+    }
+}

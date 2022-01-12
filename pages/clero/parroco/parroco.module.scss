@@ -1,0 +1,69 @@
+@use "../../../styles/variables/colores" as *;
+@use "../../../styles/variables/mixins" as *;
+
+.parrocos{
+    padding: 0 20px;
+    max-width: $maxWidth;
+    margin: 60px auto;
+
+    //Header
+    .header{
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 5px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid $clr_azulOscuro;
+
+        //Titulo
+        h1{
+            color: $clr_azulOscuro;
+            font-size: 1.87rem;
+            font-family: 'Barlow Condensed';
+            font-weight: 500;
+            @media only screen and (min-width: $celularChicoLandscape){
+                font-size: 2.5rem;
+            }
+            @media only screen and (min-width: $celularGrandeLandscape){
+                font-size: 3rem;
+            }
+        }
+    }
+
+    //Info parrocos
+    .infoParrocos{
+        //Parroco
+        .parroco{
+            //Header
+            header{
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    display: grid;
+                    grid-template-columns: 350px 1fr;
+                    grid-gap: 20px;
+                    gap: 30px;
+                }
+                .containerImagen{
+                    position: relative;
+                    width: 100%;
+                    height: 0;
+                    padding-top: 56.25%;
+                    margin-bottom: 20px;
+                }
+                //Nombre
+                h2{
+                    @include h2($clr_azulClaro, "Barlow");
+                }
+                //cargo parroco
+                h3{
+                    @include h3($weight:400);
+                }
+            }
+            //Info
+            .info{
+                margin: 20px 0 60px;
+                p{
+                    @include parrafos;
+                }
+            }
+        }
+    }
+}

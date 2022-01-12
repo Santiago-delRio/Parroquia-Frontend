@@ -1,0 +1,71 @@
+@use "../styles/variables/colores" as *;
+@use "../styles/variables/mixins" as *;
+
+.error404{
+    padding: 0 20px;
+    margin: 60px auto;
+    max-width: $maxWidth;
+
+    @media only screen and (min-width: $tablet){
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+        gap: 40px;
+    }
+
+    .info{
+        margin: auto 0; 
+        h1{
+            font-size: 4rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        p{
+            font-size: 1.4rem;
+            font-weight: 400;
+            @media only screen and (min-width: $tablet){
+                margin-bottom: 60px;
+            }
+        }
+        a{
+            display: none;
+            &:hover{
+                transform: translateX(5px);
+            }
+            @media only screen and (min-width: $tablet){
+                display: block;
+            }
+        }
+    }
+    
+    //Imagen
+    .containerImagen{
+        width: 100%;
+        height: auto;
+    }
+
+    //boton
+    a{
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: $clr_azulOscuro;
+        text-decoration: none;
+
+        width: fit-content;
+        padding: 10px;
+        background-color: $clr_dorado;
+        border: 2px solid $clr_dorado;
+
+        transition: .2s;
+
+        &:hover{
+            transform: translateX(5px);
+        }
+    }
+    
+    & > a{
+        @media only screen and (min-width: $tablet){
+            display: none;
+        }
+    }
+}

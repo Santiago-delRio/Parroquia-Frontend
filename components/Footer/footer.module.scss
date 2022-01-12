@@ -1,0 +1,142 @@
+@use "../../styles/variables/colores" as *;
+@use "../../styles/variables/mixins" as *;
+
+.footerContainer{
+    background: rgb(27,34,73);
+    background: linear-gradient(145deg, rgba(27,34,73,1) 0%, rgba(17,23,53,1) 100%);
+    padding: 30px 0;
+    .footer{
+        max-width: $maxWidth;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        @media only screen and (min-width: $tablet){
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+        .horarios, .contacto{
+            @media only screen and (min-width: $tablet){
+                width: 50%;
+            }
+        }
+    
+        //Titulos
+        h2{
+            color: $clr_dorado;
+            font-family: "Barlow Condensed";
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            @media only screen and (min-width: $celularNormalLandscape){
+                font-size: 1.8rem;
+            }
+        }
+        //Subtitulos
+        h3{
+            color: #FAD19D;
+            font-weight: 300;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            //Subtitulo "secretaria parroquial"
+            &:last-of-type{
+                margin-top: 10px;
+            }
+            @media only screen and (min-width: $celularNormalLandscape){
+                font-size: 1.6rem;
+            }
+        }
+        //Horarios
+        p{
+            color: #D9E5FF;
+            font-weight: 300;
+            font-size: 1.15rem;
+            padding: 5px 0;
+            @media only screen and (min-width: $celularNormalLandscape){
+                font-size: 1.2rem;
+            }
+        }
+        //Contacto / Redes
+        .contacto{
+            display: flex;
+            flex-direction: column;
+            margin-top: 40px;
+            @media only screen and (min-width: $tablet){
+                margin-top: 0;
+            }
+            //Info redes
+            a{
+                width: fit-content;
+                text-decoration: none;
+                margin-bottom: 25px;
+                transition: transform .2s;
+                position: relative;
+
+                &::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    background-color: $clr_dorado;
+                    left: 0;
+                    bottom: 0;
+
+                    height: 100%;
+                    width: 3px;
+
+                    transform: scaleX(0);
+                    transition: .2s;
+                }
+                &:hover{
+                    &::before{
+                        transform: scaleX(1);
+                    }
+                    span{
+                        transform: translateX(5px);
+                    }
+                }
+
+                span{
+                    display: flex;
+                    align-items: center;
+                    color: #D9E5FF;
+                    font-weight: 300;
+                    font-size: 1.15rem;
+                    transition: .2s;
+
+                    @media only screen and (min-width: $celularChico){
+                        br{
+                            display: none;
+                        }
+                    }
+                    
+                    @media only screen and (min-width: $celularNormalLandscape){
+                        font-size: 1.2rem;
+                    }
+                   
+                    svg{
+                        margin-right: 20px;
+                        fill: $clr_dorado;
+                        width: 2.6rem;
+                        height: 2.6rem;
+                        flex-shrink: 0;
+                    }
+                    &:last-of-type{
+                        padding-bottom: 0;
+                        svg{
+                            width: 2.6rem;
+                            height: 2.3rem;
+                        }
+                    }
+                }
+            }
+        }
+        //Boton preguntas frecuentes
+        .btnPreguntas{
+            margin-top: 40px;
+
+            button{
+                @include botonAzul;
+            }
+        }
+    }
+}

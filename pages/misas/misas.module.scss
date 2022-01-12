@@ -1,0 +1,129 @@
+@use "../../styles/variables/colores" as *;
+@use "../../styles/variables/mixins" as *;
+
+.misasContainer{
+
+    //Header
+    header{
+        @include headerImagen;
+        & > span img{
+            object-position: 0 38%;
+            max-width: none!important;
+            max-height: none!important;
+            width: 100%!important;
+            height: 100%!important;
+        }
+    }
+    //Info
+    & > section{
+        padding: 60px 20px;
+        margin: 0 auto;
+        max-width: $maxWidth;
+        @media only screen and (min-width: $celularGrandeLandscape){
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 100px;
+            grid-gap: 100px;
+        }
+        //Misas en el templo
+        .misas{
+            //Titulo
+            h2{
+                @include h2;
+                margin-bottom: 15px;
+            }
+            //Subtitulos
+            h3{
+                color: $clr_texto;
+                font-weight: 500;
+                font-size: 1.3rem;
+                padding-bottom: 5px;
+                @media only screen and (min-width: $celularNormalLandscape){
+                    font-size: 1.4rem;
+                }
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    font-size: 1.55rem;
+                }
+            }
+            //Texto
+            p{
+                @include parrafos;
+            }
+            & > div{
+                padding: 10px 0;
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    padding: 20px 0;
+                }
+                &:last-of-type{
+                    padding-bottom: 0;
+                }
+                &:first-of-type{
+                    padding-top: 0;
+                }
+            }
+        }
+        //Horarios y herramientas
+        .horarios_herramientas{
+            //Titulos
+            h2{
+                font-family: "Barlow Condensed";
+                font-weight: 500;
+                font-size: 1.87rem;
+                color: $clr_azulOscuro;
+                margin-bottom: 15px;
+                @media only screen and (min-width: $celularNormalLandscape){
+                    font-size: 2rem;
+                }
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    font-size: 2.2rem;
+                }
+            }
+            //Horarios
+            .horarios{
+                margin: 60px 0;
+                @media only screen and (min-width: $celularGrandeLandscape){
+                    margin-top: 0;
+                }
+                //Subtitulos
+                h3{
+                    color: $clr_texto;
+                    font-weight: 500;
+                    font-size: 1.25rem;
+                    padding-bottom: 5px;
+                    @media only screen and (min-width: $celularNormalLandscape){
+                        font-size: 1.35rem;
+                    }
+                    @media only screen and (min-width: $celularGrandeLandscape){
+                        font-size: 1.5rem;
+                    }
+                    &:last-of-type{
+                        margin-top: 10px;
+                    }
+                }
+                span{
+                    color: $clr_texto;
+                    font-weight: 300;  
+                    @media only screen and (min-width: $celularNormalLandscape){
+                        font-size: 1.15rem;
+                    }
+                    @media only screen and (min-width: $celularGrandeLandscape){
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+            //Herramientas
+            .herramientas{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                button{
+                    @include botonDorado;
+                    margin: 10px 0;
+                    &:first-of-type{
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
