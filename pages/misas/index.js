@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import headerImg from "../../assets/imagenes/misas/header.jpeg"
 import misasStyles from "./misas.module.scss"
+import HeaderImagen from '../../components/HeaderImagen'
 
 const Misas = () => {
     return (
@@ -10,14 +10,10 @@ const Misas = () => {
                 <title>Misas - Parroquia Santa Juana de Arco</title>
             </Head>
             {/* Header */}
-            <header>
-                <Image src={headerImg} alt="Imagen del interior de la iglesia" layout={'fill'} objectFit='cover' quality="90" priority="true"/>
-                <div className={misasStyles.filtro}></div>
-                <h1>MISAS</h1>
-            </header>
+            <HeaderImagen titulo="MISAS" imagen={headerImg} alt="Imagen del interior de la iglesia"/>
 
             {/* Info */}
-            <section>
+            <section aria-label='Información de las misas'>
                 <section className={misasStyles.misas}>
                     <h2>MISAS EN EL TEMPLO</h2>
                     <div>

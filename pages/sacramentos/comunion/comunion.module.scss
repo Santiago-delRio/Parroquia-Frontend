@@ -2,16 +2,6 @@
 @use "../../../styles/variables/mixins" as *;
 
 .comunion{
-    //Header
-    header{
-        @include headerImagen;
-        & > span img{
-            max-width: none!important;
-            max-height: none!important;
-            width: 100%!important;
-            height: 100%!important;
-        }
-    }
 
     //Info
     .info{

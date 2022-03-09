@@ -3,17 +3,6 @@
 
 .preguntasContainer{
 
-    //Header
-    header{
-        @include headerImagen;
-        & > span img{
-            object-position: 0 20%;
-            max-width: none!important;
-            max-height: none!important;
-            width: 100%!important;
-            height: 100%!important;
-        }
-    }
     //Preguntas
     .preguntas{
         padding: 0 20px;

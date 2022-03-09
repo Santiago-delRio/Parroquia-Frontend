@@ -1,163 +1,144 @@
 @use "../../styles/variables/colores" as *;
 @use "../../styles/variables/mixins" as *;
 
-.contacto{
-    //Header
-    header{
-        @include headerImagen;
-        & > span img{
-            object-position: 0 90%;
-            max-width: none!important;
-            max-height: none!important;
-            width: 100%!important;
-            height: 100%!important;
-        }
+.contacto {
+
+  //Info
+  .info {
+    margin: 60px auto;
+    padding: 0 20px;
+    max-width: $maxWidth;
+    h3 {
+      @include h3($clr_azulOscuro);
+      margin-bottom: 20px;
     }
-    //Info
-    .info{
-        margin: 60px auto;
-        padding: 0 20px;
-        max-width: $maxWidth;
-        h3{
-            @include h3($clr_azulOscuro);
-            margin-bottom: 20px;  
+
+    //Secretaria
+    .secretaria {
+      margin-bottom: 60px;
+      ul li {
+        margin-left: 40px;
+        &:first-of-type {
+          padding-bottom: 15px;
         }
-
-        //Secretaria
-        .secretaria{
-            margin-bottom: 60px;
-            ul li{
-                margin-left: 40px;
-                &:first-of-type{
-                    padding-bottom: 15px;
-                }
-            }
-            li, p{
-                @include parrafos;
-                span{
-                    color: $clr_azulClaro;
-                    font-weight: 500;
-                }
-            }
-            p:first-of-type{
-                padding: 15px 0 10px;
-            }
+      }
+      li,
+      p {
+        @include parrafos;
+        span {
+          color: $clr_azulClaro;
+          font-weight: 500;
         }
-        //Redes
-        .redes{
-            margin-bottom: 60px;
-            .links{
-                border-left: 5px solid $clr_dorado;
-                padding-left: 15px;
-
-                a{
-                    text-decoration: none;
-                    width: fit-content;
-                    background-color: red;
-                    position: relative;
-                    height: 200px;
-                    width: 200px;
-
-                    span{
-                        display: flex;
-                        align-items: center;
-                        width: fit-content;
-                        margin-bottom: 15px;
-                        @include parrafos;
-                        
-                        @media only screen and (min-width: $celularChico){
-                            br{
-                                display: none;
-                            }
-                        }
-        
-                        @media only screen and (min-width: $celularChicoLandscape){
-                            font-size: 1.2rem;
-                        }
-                        @media only screen and (min-width: $escritorio){
-                            font-size: 1.4rem;
-                        }
-                       
-                        svg{
-                            margin-right: 20px;
-                            fill: $clr_azulOscuro;
-                            width: 2.6rem;
-                            height: 2.6rem;
-                            flex-shrink: 0;
-                        }
-                        &:last-of-type{
-                            svg{
-                                height: 2.3rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        //Formulario
-        form{
-            display: flex;
-            flex-direction: column;
-            label{
-                font-size: 1.2rem;
-                color: $clr_azulClaro;
-                margin-bottom: 10px;
-
-                @media only screen and (min-width: $celularChicoLandscape){
-                    font-size: 1.3rem;
-                }
-                @media only screen and (min-width: $escritorio){
-                    font-size: 1.4rem;
-                }
-            }
-            input{
-                padding: 10px;
-                margin-bottom: 30px;
-                background: rgba(27, 34, 73, 0.05);
-                border: none;
-                border-bottom: 3px solid rgba(27, 34, 73, 0.3);
-                &:focus{
-                    border-bottom: 3px solid rgba(27, 34, 73, 1);
-                    outline: none;
-                }
-            }
-            textarea{
-                background: rgba(27, 34, 73, 0.05);
-                border: none;
-                border-bottom: 3px solid rgba(27, 34, 73, 0.3);
-                overflow: hidden;
-                resize: none;
-                padding: 12px;
-                &:focus{
-                    border-bottom: 3px solid rgba(27, 34, 73, 1);
-                    outline: none;
-                }
-            }
-            //Boton enviar
-            input[type="submit"]{
-                font-family: "Barlow Condensed";
-                font-size: 1.2rem;
-                font-weight: 500;
-                width: fit-content;
-
-                background-color: $clr_dorado;
-                border: none;
-                margin-top: 20px;
-                padding: 10px;
-                color: $clr_azulOscuro;
-
-                cursor: pointer;
-
-                @media only screen and (min-width: $celularChicoLandscape){
-                    font-size: 1.3rem;
-                }
-                @media only screen and (min-width: $escritorio){
-                    font-size: 1.4rem;
-                }
-                &:focus{
-                    outline: 2px solid black;
-                }
-            }
-        }
+      }
+      p:first-of-type {
+        padding: 15px 0 10px;
+      }
     }
+    //Redes
+    .redes {
+      margin-bottom: 60px;
+      .links {
+        border-left: 5px solid $clr_dorado;
+        padding-left: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        //Link
+        a {
+          display: flex;
+          align-items: center;
+
+          width: fit-content;
+          @include parrafos;
+          text-decoration: none;
+
+          @media only screen and (min-width: $celularChico) {
+            br {
+              display: none;
+            }
+          }
+
+          //Icono
+          svg {
+            margin-right: 20px;
+            fill: $clr_azulOscuro;
+            width: 2.6rem;
+            height: 2.6rem;
+            flex-shrink: 0;
+          }
+          &:last-of-type {
+            svg {
+              height: 2.3rem;
+            }
+          }
+        }
+      }
+    }
+    //Formulario
+    form {
+      display: flex;
+      flex-direction: column;
+      label {
+        font-size: 1.2rem;
+        color: $clr_azulClaro;
+        margin-bottom: 10px;
+
+        @media only screen and (min-width: $celularChicoLandscape) {
+          font-size: 1.3rem;
+        }
+        @media only screen and (min-width: $escritorio) {
+          font-size: 1.4rem;
+        }
+      }
+      input {
+        padding: 10px;
+        margin-bottom: 30px;
+        background: rgba(27, 34, 73, 0.05);
+        border: none;
+        border-bottom: 3px solid rgba(27, 34, 73, 0.3);
+        &:focus {
+          border-bottom: 3px solid rgba(27, 34, 73, 1);
+          outline: none;
+        }
+      }
+      textarea {
+        background: rgba(27, 34, 73, 0.05);
+        border: none;
+        border-bottom: 3px solid rgba(27, 34, 73, 0.3);
+        overflow: hidden;
+        resize: none;
+        padding: 12px;
+        &:focus {
+          border-bottom: 3px solid rgba(27, 34, 73, 1);
+          outline: none;
+        }
+      }
+      //Boton enviar
+      input[type="submit"] {
+        font-family: "Barlow Condensed";
+        font-size: 1.2rem;
+        font-weight: 500;
+        width: fit-content;
+
+        background-color: $clr_dorado;
+        border: none;
+        margin-top: 20px;
+        padding: 10px;
+        color: $clr_azulOscuro;
+
+        cursor: pointer;
+
+        @media only screen and (min-width: $celularChicoLandscape) {
+          font-size: 1.3rem;
+        }
+        @media only screen and (min-width: $escritorio) {
+          font-size: 1.4rem;
+        }
+        &:focus {
+          outline: 2px solid black;
+        }
+      }
+    }
+  }
 }

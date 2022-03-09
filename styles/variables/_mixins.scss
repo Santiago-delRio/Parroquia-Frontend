@@ -6,9 +6,12 @@
     font-size: 1.1rem;
     font-weight: 500;
     color: $clr_dorado;
+
     padding: 10px;
     background-color: transparent;
     border: 3px solid $clr_dorado;
+
+    text-decoration: none;
     cursor: pointer;
     transition: .2s;
     @media only screen and (min-width: $celularChicoLandscape){
@@ -21,6 +24,7 @@
 }
 
 @mixin botonDorado{
+    display: block;
     font-family: 'Barlow Condensed';
     font-size: 1rem;
     font-weight: 500;
@@ -28,6 +32,7 @@
     padding: 10px;
     background-color: $clr_dorado;
     border: none;
+    text-decoration: none;
     cursor: pointer;
     @media only screen and (min-width: $celularChicoLandscape){
         font-size: 1.1rem;
@@ -73,55 +78,6 @@
     }
     @media only screen and (min-width: $escritorio){
         font-size: 1.8rem;
-    }
-}
-
-//==== Header con imagen y titulo
-@mixin headerImagen{
-    position: relative;
-    width: 100%;
-    height: 190px;
-    @media only screen and (min-width: $celularChicoLandscape){
-        height: 250px;
-    }
-    @media only screen and (min-width: $celularGrandeLandscape){
-        height: 300px;
-    }
-    @media only screen and (min-width: $escritorio){
-        height: 350px;
-    }
-    @media only screen and (min-width: $escritorioMediano){
-        height: 430px;
-    }
-    .filtro{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
-    }
-    //Titulo
-    h1{
-        position: absolute;
-        bottom: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-
-        font-family: "Barlow Condensed";
-        font-weight: 500;
-        font-size: 2.8rem;
-        color: white;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-        padding: 0 20px;
-
-        width: 100%;
-        max-width: 1232px;
-        @media only screen and (min-width: $celularGrandeLandscape){
-            font-size: 3.5rem;
-        }
-        @media only screen and (min-width: $escritorio){
-            font-size: 4rem;
-        }
     }
 }
 

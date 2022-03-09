@@ -85,7 +85,7 @@
                     @include parrafos(#D9E5FF);
                 }
                 //Boton ultimas novedades
-                button{
+                a{
                     @include botonAzul;
                 }
             }
@@ -160,16 +160,14 @@
                     padding-bottom: 25px;
                 }
             }
+            //Boton
             a{
+                @include botonDorado;
                 width: fit-content;
-                text-decoration: none;
 
                 @media only screen and (min-width: 59.87em){
                     display: flex;
                     margin: 0 auto;
-                }
-                button{
-                    @include botonDorado;
                 }
             }
         }

@@ -133,10 +133,7 @@
         //Boton preguntas frecuentes
         .btnPreguntas{
             margin-top: 40px;
-
-            button{
-                @include botonAzul;
-            }
+            @include botonAzul;
         }
     }
 }

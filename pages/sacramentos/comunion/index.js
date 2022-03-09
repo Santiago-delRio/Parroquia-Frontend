@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
+import HeaderImagen from '../../../components/HeaderImagen'
 import headerImg from "../../../assets/imagenes/sacramentos/comunion/header.jpg"
 import comunionStyles from "./comunion.module.scss"
 
@@ -11,11 +10,7 @@ const Comunion = () => {
                 <title>Comunión - Parroquia Santa Juana de Arco</title>
             </Head>
             {/* Header */}
-            <header>
-                <Image src={headerImg} alt="Imagen del interior de la iglesia" layout={'fill'} objectFit='cover' quality="90" priority="true"/>
-                <div className={comunionStyles.filtro}></div>
-                <h1>COMUNIÓN</h1>
-            </header>
+            <HeaderImagen titulo="COMUNIÓN" imagen={headerImg} alt="Imágen de una comunión"/>
 
             {/* Content */}
             <section className={comunionStyles.info}>
@@ -31,12 +26,7 @@ const Comunion = () => {
                 <h3>¿Cómo me preparo?</h3>
                 <ul>
                     <li>Primera comunión para niños: Se realiza una preparación de los chicos y chicas mediante la catequesis familiar.</li>
-                    <li>Primera comunión para jóvenes y adultos: A partir de los 15 años en adelante se realiza la preparación junto a la preparación para la confirmación. Más información en{'\u00A0'}
-                        <Link href="/sacramentos/confirmacion">
-                            <a >Sacramento de la Confirmación</a>
-                        </Link>
-                        .
-                    </li>
+                    <li>Primera comunión para jóvenes y adultos: A partir de los 15 años en adelante se realiza la preparación junto a la preparación para la confirmación. Más información en <a href='#'>Sacramento de la Confirmación</a>.</li>
                 </ul>
 
                 {/* Pregunta */}

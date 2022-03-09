@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import Link from "next/link"
 import Image from 'next/image'
+//imagenes
 import fondo from "../assets/imagenes/inicio/fondo.svg"
 import imagenHero from "../assets/imagenes/inicio/Estatua.jpeg"
 import imagenColecta from "../assets/imagenes/inicio/colecta.jpg"
 import imagenCelebracion from "../assets/imagenes/inicio/iglesiaDentro.jpeg"
 import imagenFrase from "../assets/imagenes/inicio/iglesiaFuera.jpeg"
+
 import inicioStyles from "./inicio.module.scss"
-import Novedades from "../components/UltimasNovedades"
+import UltimasNovedades from "../components/UltimasNovedades"
 
 const Home = ({ novedades }) => {
 
@@ -32,9 +34,7 @@ const Home = ({ novedades }) => {
             <p>¡Bienvenidos a la comunidad! La parroquia no es el templo… es mucho más: el barrio, la gente, la vida de fe… Aquí podrás encontrar alguna información útil, en cuanto organización y actividades… y ante cualquier duda no dejes de contactarte con nosotros…</p>
             {/* boton ultimas novedades*/}
             <Link href="/novedades">   
-                <a>
-                    <button>Últimas novedades</button>
-                </a>
+                <a>Últimas novedades</a>
             </Link>
           </div>
         </div>
@@ -55,9 +55,7 @@ const Home = ({ novedades }) => {
           <h2>COLECTA</h2>
           <p>Podés aportar a la comunidad desde tu casa. La Iglesia somos todos, y tu ofrenda es necesaria para sostener la obra de la evangelización y la ayuda a los más necesitados.</p>
           <Link href="/">
-              <a>
-                  <button>DONAR AHORA</button>
-              </a>
+              <a> DONAR AHORA </a>
           </Link>
         </div>
       </section>
@@ -71,9 +69,7 @@ const Home = ({ novedades }) => {
           <h2>CELEBRACIÓN</h2>
           <p>Cada una de las celebraciones (misas, bautismos, matrimonios, encuentros con la palabra, etc) son el alma de la vida de la comunidad. Hacemos muchas cosas, pero hay algo que nos une: Celebrar un misterio de Fe: a Jesús vivo entre nosotros</p>
           <Link href="/misas">
-              <a>
-                  <button>VER MÁS</button>
-              </a>
+              <a>VER MÁS</a>
           </Link>
         </div>
       </section>
@@ -89,44 +85,34 @@ const Home = ({ novedades }) => {
       </section>
 
       {/* Ultimas novedades */}
-      <Novedades novedades={novedades}/>
+      <UltimasNovedades novedades={novedades.data}/>
     </div>
   );
 }
  
 export default Home;
 
-
-//Fetch novedades
-
 export async function getStaticProps(){
 
-  const res = await fetch(`${process.env.SERVER_IP}/novedades?_limit=3&_sort=created_at:DESC`, {
-    headers: {
+  const resNovedades = await fetch(`${process.env.SERVER_IP}/api/novedades-parroquias?populate=portada&pagination[limit]=3&sort[0]=createdAt:desc`, {
+      headers: {
       'Authorization': process.env.API_AUTH
-    },
+      },
   })
-  
-  const novedades = await res.json()
+
+  const novedades = await resNovedades.json()
 
   //Cambiar formato de la fecha de creacion de la novedad
-  const regexFormato = /(202\d)-(\d\d)-(\d\d)/
-  const regexFechaHora = /T\d\d:\d\d:\d\d.\d\d\d\w/
+  const regexFormatoFecha = /(202\d)-(\d\d)-(\d\d)/
+  const regexSacarHoraFecha = /T\d\d:\d\d:\d\d.\d\d\d\w/
 
-  novedades.map((novedad) =>{
-    novedad.created_at = novedad.created_at.replace(regexFormato, '$3/$2/$1')
-    novedad.created_at = novedad.created_at.replace(regexFechaHora, '')
+  novedades.data.map((novedad) =>{
+    novedad.attributes.createdAt = novedad.attributes.createdAt.replace(regexFormatoFecha, '$3/$2/$1')
+    novedad.attributes.createdAt = novedad.attributes.createdAt.replace(regexSacarHoraFecha, ' ')
   })
 
-  //Arreglar ruta de la portada 
-  const regexSrc = /^\/uploads/g
-
-  novedades.map((novedad)=>{
-    novedad.portada.url = novedad.portada.url.replace(regexSrc, `${process.env.SERVER_IP}/uploads`)
-  })
-  
   return{
-    props: { novedades },
-    revalidate: 120,
+      props: { novedades },
+      revalidate: 120,
   }
 }

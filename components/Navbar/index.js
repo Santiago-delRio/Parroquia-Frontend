@@ -127,54 +127,23 @@ const Navbar = () => {
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/clero/parroco">
                                             <a>Vicario</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/clero/parroco">
                                             <a>Seminaristas</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/clero/parroco">
                                             <a>Diáconos</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/clero/parroco">
                                             <a>Director junta</a>
-                                        </Link> 
-                                    </li>
-                                </ul>
-                            : ""}
-                        </li>
-                        {/* El templo */}
-                        <li>
-                            <span onClick={()=>{setTemploDropdown(prevState => !prevState)}} tabIndex="0" onKeyPress={(event)=>{event.key == "Enter" || event.key == " " ? setTemploDropdown(prevState => !prevState) : ""}}>
-                                El Templo
-                                <svg className={temploDropdown ? navbarStyles.flechaAbierta : ""} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-                            </span>
-                            {temploDropdown ? 
-                                <ul>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Información general</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Historia y arquitectura</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Restauración</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Imagenes del templo</a>
                                         </Link> 
                                     </li>
                                 </ul>
@@ -189,7 +158,7 @@ const Navbar = () => {
                             {sacramentosDropdown ? 
                                 <ul>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/sacramentos/comunion">
                                             <a>Bautismo</a>
                                         </Link> 
                                     </li>
@@ -199,113 +168,27 @@ const Navbar = () => {
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/sacramentos/comunion">
                                             <a>Confirmación</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/sacramentos/comunion">
                                             <a>Matrimonio</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/sacramentos/comunion">
                                             <a>Reconciliación</a>
                                         </Link> 
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/sacramentos/comunion">
                                             <a>Unción de los enfermos</a>
                                         </Link> 
                                     </li>
                                 </ul>
                             : ""}
-                        </li>
-                        <li>
-                            <Link href="/">
-                                <a>Cinerario</a>
-                            </Link> 
-                        </li>
-                        {/* Area pastoral */}
-                        <li>
-                            <span onClick={()=>{setPastoralDropdown(prevState => !prevState)}} tabIndex="0" onKeyPress={(event)=>{event.key == "Enter" || event.key == " " ? setPastoralDropdown(prevState => !prevState) : ""}}>
-                                Área pastoral
-                                <svg className={pastoralDropdown ? navbarStyles.flechaAbierta : ""} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-                            </span>
-                            {pastoralDropdown ? 
-                                <ul>
-                                    <li>
-                                        <span onClick={()=>{setJovenesDropdown(prevState => !prevState)}} tabIndex="0" onKeyPress={(event)=>{event.key == "Enter" || event.key == " " ? setJovenesDropdown(prevState => !prevState) : ""}}>
-                                            Jóvenes
-                                            <svg className={jovenesDropdown ? navbarStyles.flechaAbierta : ""} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-                                        </span>
-                                        {jovenesDropdown ? 
-                                            <ul>
-                                                <li>
-                                                    <Link href="/">
-                                                        <a>Adoración joven</a>
-                                                    </Link> 
-                                                </li>
-                                                <li>
-                                                    <Link href="/">
-                                                        <a>Grupo Misionero Joven</a>
-                                                    </Link> 
-                                                </li>
-                                                <li>
-                                                    <Link href="/">
-                                                        <a>Grupo de Jóvenes</a>
-                                                    </Link> 
-                                                </li>
-                                                <li>
-                                                    <Link href="/">
-                                                        <a>Grupo de Adolescentes</a>
-                                                    </Link> 
-                                                </li>
-                                                <li>
-                                                    <Link href="/">
-                                                        <a>Scout</a>
-                                                    </Link> 
-                                                </li>
-                                            </ul>
-                                        : ""}
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Matrimonio</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/area-pastoral/caritas">
-                                            <a>Cáritas</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Catequesis</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Liturgia</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Grupo de oración</a>
-                                        </Link> 
-                                    </li>
-                                    <li>
-                                        <Link href="/">
-                                            <a>Grupo misionero parroquial</a>
-                                        </Link> 
-                                    </li>
-                                </ul>
-                            : ""}
-                        </li>
-                        <li>
-                            <Link href="/">
-                                <a>Boletín</a>
-                            </Link> 
                         </li>
                     </ul>
                     : ""}

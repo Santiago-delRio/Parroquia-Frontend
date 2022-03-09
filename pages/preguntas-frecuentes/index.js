@@ -1,7 +1,7 @@
+import Head from 'next/head'
 import preguntasStyles from "./preguntas.module.scss"
 import headerImg from "../../assets/imagenes/inicio/iglesiaFuera.jpeg"
-import Head from 'next/head'
-import Image from 'next/image'
+import HeaderImagen from '../../components/HeaderImagen'
 
 const PreguntasFrecuentes = () => {
     return (
@@ -12,11 +12,7 @@ const PreguntasFrecuentes = () => {
             </Head>
 
             {/* Header */}
-            <header>
-                <Image src={headerImg} alt="Imagen del interior de la iglesia" layout={'fill'} objectFit='cover' quality="90" priority="true"/>
-                <div className={preguntasStyles.filtro}></div>
-                <h1>PREGUNTAS FRECUENTES</h1>
-            </header>
+            <HeaderImagen titulo="PREGUNTAS FRECUENTES" imagen={headerImg} alt="Imagen del exterior de la iglesia"/>
 
             {/* Preguntas */}
             <section className={preguntasStyles.preguntas}>

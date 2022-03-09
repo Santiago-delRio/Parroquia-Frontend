@@ -2,18 +2,7 @@
 @use "../../styles/variables/mixins" as *;
 
 .misasContainer{
-
-    //Header
-    header{
-        @include headerImagen;
-        & > span img{
-            object-position: 0 38%;
-            max-width: none!important;
-            max-height: none!important;
-            width: 100%!important;
-            height: 100%!important;
-        }
-    }
+    
     //Info
     & > section{
         padding: 60px 20px;

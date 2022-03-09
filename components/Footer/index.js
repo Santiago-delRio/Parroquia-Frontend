@@ -56,9 +56,7 @@ const Footer = () => {
 
                 {/* Preguntas frecuentes */}
                 <Link href="/preguntas-frecuentes">
-                    <a className={footerStyles.btnPreguntas}>
-                        <button>Preguntas frecuentes</button>
-                    </a>
+                    <a className={footerStyles.btnPreguntas}>Preguntas frecuentes</a>
                 </Link>
             </div>
         </footer>

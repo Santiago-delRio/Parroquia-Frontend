@@ -1,34 +1,25 @@
 import Head from 'next/head'
-import Link from "next/link"
-import Image from 'next/image'
 import novedadesStyles from "./novedades.module.scss"
-import { useEffect, useState } from 'react'
+import NovedadCard from "../../components/NovedadCard"
+import { useState } from 'react'
 
 const Novedades = ({ novedades }) => {
 
-    //Cantidad total de noticias para cargar
-    const [cantTotalNoticias, setCantTotalNoticias] = useState(0)
+    const [novedadesMostradas, setNovedadesMostradas] = useState(6)
 
-    //Ver cuantas noticias hay para cargar
-    useEffect(()=>{
-        setCantTotalNoticias(novedades.length);
-        (novedades.length < 6 && novedades.length > 0) ? setNoticiasMostradas(novedades.length)  : "";
-    },[])
+    //Cargar mas novedades
+    const cargarMasResultados = () =>{
+        const cantTotalNovedades = novedades.data.length
+        let novedadesRestantes = cantTotalNovedades - novedadesMostradas;
 
-    //Cantidad de noticias mostradas
-    const [noticiasMostradas, setNoticiasMostradas] = useState(6)
-
-    //Cargar mas noticias
-    const cargarNoticias = () =>{
-        let noticiasRestantes = cantTotalNoticias - noticiasMostradas;
-
-        if(noticiasRestantes >= 6){
-            setNoticiasMostradas((prevNoticiasMostradas) => prevNoticiasMostradas + 6)
-        }else if(noticiasRestantes < 6 && noticiasRestantes > 0){
-            setNoticiasMostradas((prevNoticiasMostradas) => prevNoticiasMostradas + noticiasRestantes)
+        if(novedadesRestantes >= 6){
+            setNovedadesMostradas((prevNovedadesMostradas) => prevNovedadesMostradas + 6)
+        }else if(novedadesRestantes < 6 && novedadesRestantes > 0){
+            setNovedadesMostradas((prevNovedadesMostradas) => prevNovedadesMostradas + novedadesRestantes)
         }
-        
     }
+
+
     return (
         <section className={novedadesStyles.novedades}>
             <Head>
@@ -40,30 +31,13 @@ const Novedades = ({ novedades }) => {
             </header>
             {/* Novedades */}
             <section className={novedadesStyles.listaNovedades}>
-            {novedades.slice(0,noticiasMostradas).map(novedad => (
-                <div key={novedad.slug} className={novedadesStyles.noticia}>
-                    <Link href={`/novedades/${novedad.slug}`}>
-                        <a className={novedadesStyles.containerImagen}>
-                            <Image src={novedad.portada.url} alt="Portada novedad" layout={'fill'} objectFit={'cover'} quality="90"/>
-                        </a>
-                    </Link>
-                    <div className={novedadesStyles.info}>
-                        <h1>{novedad.titulo}</h1>
-                        <div className={novedadesStyles.fecha_Boton}>
-                            <Link href={`/novedades/${novedad.slug}`}>
-                                <a>
-                                    <button>SEGUIR LEYENDO</button>
-                                </a>
-                            </Link>
-                            <span>{novedad.created_at}</span>
-                        </div>
-                    </div>
-                </div>
+            {novedades.data.slice(0,novedadesMostradas).map(novedad => (
+                <NovedadCard key={novedad.id} novedad={novedad.attributes}/>
             ))} 
             </section>
             {/* Boton cargar más novedades*/}
-            {(cantTotalNoticias != noticiasMostradas) ? 
-                <button className={novedadesStyles.btnCargarResultados} onClick={()=>{cargarNoticias()}}>CARGAR MÁS RESULTADOS</button>
+            {(novedades.data.length != novedadesMostradas) ? 
+                <button className={novedadesStyles.btnCargarResultados} onClick={()=>{cargarMasResultados()}}>CARGAR MÁS RESULTADOS</button>
             : ""}
         </section>
     );
@@ -72,36 +46,27 @@ const Novedades = ({ novedades }) => {
 export default Novedades;
 
 
-//Fetch novedades
-
 export async function getStaticProps(){
 
-    const res = await fetch(`${process.env.SERVER_IP}/novedades?_sort=created_at:DESC`, {
-      headers: {
+    const resNovedades = await fetch(`${process.env.SERVER_IP}/api/novedades-parroquias?populate=portada&sort[0]=createdAt:desc`, {
+        headers: {
         'Authorization': process.env.API_AUTH
-      },
+        },
     })
-    
-    const novedades = await res.json()
+  
+    const novedades = await resNovedades.json()
   
     //Cambiar formato de la fecha de creacion de la novedad
-    const regexFormato = /(202\d)-(\d\d)-(\d\d)/
-    const regexFechaHora = /T\d\d:\d\d:\d\d.\d\d\d\w/
+    const regexFormatoFecha = /(202\d)-(\d\d)-(\d\d)/
+    const regexSacarHoraFecha = /T\d\d:\d\d:\d\d.\d\d\d\w/
   
-    novedades.map((novedad) =>{
-      novedad.created_at = novedad.created_at.replace(regexFormato, '$3/$2/$1')
-      novedad.created_at = novedad.created_at.replace(regexFechaHora, '')
+    novedades.data.map((novedad) =>{
+      novedad.attributes.createdAt = novedad.attributes.createdAt.replace(regexFormatoFecha, '$3/$2/$1')
+      novedad.attributes.createdAt = novedad.attributes.createdAt.replace(regexSacarHoraFecha, ' ')
     })
   
-    //Arreglar ruta de la portada 
-    const regexSrc = /^\/uploads/g
-  
-    novedades.map((novedad)=>{
-      novedad.portada.url = novedad.portada.url.replace(regexSrc, `${process.env.SERVER_IP}/uploads`)
-    })
-    
     return{
-      props: { novedades },
-      revalidate: 120,
+        props: { novedades },
+        revalidate: 120,
     }
   }
