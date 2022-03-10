@@ -68,9 +68,12 @@
             a{
                 width: fit-content;
                 text-decoration: none;
-                margin-bottom: 25px;
                 transition: transform .2s;
                 position: relative;
+
+                &:not(:last-of-type){
+                    margin-bottom: 25px;
+                }
 
                 &::before{
                     content: "";
