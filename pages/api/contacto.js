@@ -30,7 +30,7 @@ export default async (req, res) => {
     })
 
     await new Promise((resolve, reject) => {
-        // verify connection configuration
+        
         transporter.verify(function (error, success) {
             if (error) {
                 console.log(error);
@@ -48,9 +48,7 @@ export default async (req, res) => {
             if(err)
                 reject(err)
             else
-                resolve(info)
+                res.send("Exitoso")
         })
     });
-
-    res.send("Exitoso")
 }
