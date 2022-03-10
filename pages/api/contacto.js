@@ -1,7 +1,8 @@
-export default function (req, res) {
+export default async (req, res) => {
 
-    let nodemailer = require('nodemailer')
+    const nodemailer = require('nodemailer')
 
+    //Mensaje del mail
     const mensaje = `
     Email: ${req.body.email}\n
     Nombre: ${req.body.nombre}\n
@@ -9,6 +10,14 @@ export default function (req, res) {
     ……………\n
     ${req.body.mensaje}
     `
+
+    //Armar el mail
+    const datosMail = {
+        from: process.env.MAIL_CONTACTO,
+        to: process.env.CONTACTO_MAIL_RECEPCION,
+        subject: `Mensaje de ${req.body.email} - ${req.body.nombre}`,
+        text: mensaje,
+    }
 
     const transporter = nodemailer.createTransport({
         port: 465,
@@ -20,21 +29,28 @@ export default function (req, res) {
         secure: true,
     })
 
-    //Armar el mail
-    const datosMail = {
-        from: process.env.MAIL_CONTACTO,
-        to: process.env.CONTACTO_MAIL_RECEPCION,
-        subject: `Mensaje de ${req.body.email} - ${req.body.nombre}`,
-        text: mensaje,
-    }
+    await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transporter.verify(function (error, success) {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
+        });
+    });
 
-    //Enviar mail
-    transporter.sendMail(datosMail, function (err, info) {
-        if(err)
-            console.log(err)
-        else
-            console.log(info)
-    })
+    await new Promise((resolve, reject) => {
+        //Enviar mail
+        transporter.sendMail(datosMail, function (err, info) {
+            if(err)
+                reject(err)
+            else
+                resolve(info)
+        })
+    });
 
     res.send("Exitoso")
 }
